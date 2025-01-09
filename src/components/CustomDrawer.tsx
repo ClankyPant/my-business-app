@@ -20,6 +20,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import routes from '@/constants/routes';
+import Link from 'next/link';
 
 const drawerWidth = 240;
 
@@ -109,7 +111,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const ustomDrawer: React.FC<Props> = ({ children }) => {
+const customDrawer: React.FC<Props> = ({ children }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -153,7 +155,63 @@ const ustomDrawer: React.FC<Props> = ({ children }) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {
+            routes.map((route) => (
+              <ListItem key={route.title} disablePadding sx={{ display: 'block' }}>
+                
+                <ListItemButton
+                  sx={[
+                    {
+                      minHeight: 48,
+                      px: 2.5,
+                    },
+                    open
+                      ? {
+                          justifyContent: 'initial',
+                        }
+                      : {
+                          justifyContent: 'center',
+                        },
+                  ]}
+                >
+                  <ListItemIcon
+                    sx={[
+                      {
+                        minWidth: 0,
+                        justifyContent: 'center',
+                      },
+                      open
+                        ? {
+                            mr: 3,
+                          }
+                        : {
+                            mr: 'auto',
+                          },
+                    ]}
+                  >
+                    { <route.icon /> }
+                  </ListItemIcon>
+                  <ListItemText 
+                    sx={[
+                      open
+                        ? {
+                            opacity: 1,
+                          }
+                        : {
+                            opacity: 0,
+                          },
+                    ]}
+                  >
+                    <Link href={route.location}>{route.title}</Link>
+                  </ListItemText>
+
+                </ListItemButton>
+              </ListItem>
+            ))
+          }
+
+
+          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={[
@@ -201,7 +259,7 @@ const ustomDrawer: React.FC<Props> = ({ children }) => {
                 />
               </ListItemButton>
             </ListItem>
-          ))}
+          ))} */}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
@@ -212,4 +270,4 @@ const ustomDrawer: React.FC<Props> = ({ children }) => {
   );
 }
 
-export default ustomDrawer;
+export default customDrawer;
