@@ -1,4 +1,5 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import CustomDrawer from '@/components/customDrawer';
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -19,7 +20,7 @@ export default function RootLayout({
         className={`${poppinsFont.variable} antialiased`}
       >
         <AppRouterCacheProvider>
-          { children }
+          <CustomDrawer children={ children }></CustomDrawer>
         </AppRouterCacheProvider>
       </body>
     </html>
