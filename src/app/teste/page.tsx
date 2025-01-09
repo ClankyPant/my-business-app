@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React from 'react';
 
 interface Props {
@@ -7,7 +8,6 @@ interface Props {
 const page : React.FC<Props> = ({}) => {
     return (
       <>
-        Alguma coisa sobre alguma coisa
       </>
     );
 };
