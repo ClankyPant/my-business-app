@@ -21,9 +21,9 @@ const Logo: React.FC = () => {
     
     return (
         <div style={logoStyle}>
-        <span style={logoTextStyle}>My</span>
-        <span style={highlightStyle}>Business</span>
-      </div>
+            <span style={logoTextStyle}>My</span>
+            <span style={highlightStyle}>Business</span>
+        </div>
     );
 };
 
