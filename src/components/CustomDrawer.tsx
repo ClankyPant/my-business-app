@@ -18,10 +18,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import routes from '@/constants/routes';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 const drawerWidth = 240;
 
@@ -113,6 +111,8 @@ interface Props {
 
 const customDrawer: React.FC<Props> = ({ children }) => {
   const theme = useTheme();
+  const router = useRouter();
+
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -121,6 +121,10 @@ const customDrawer: React.FC<Props> = ({ children }) => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleNavigationClick = (location : string) => {
+    router.push(location);
   };
 
   return (
@@ -143,7 +147,7 @@ const customDrawer: React.FC<Props> = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            Meu comercio
           </Typography>
         </Toolbar>
       </AppBar>
@@ -173,6 +177,7 @@ const customDrawer: React.FC<Props> = ({ children }) => {
                           justifyContent: 'center',
                         },
                   ]}
+                  onClick={() => { handleNavigationClick(route.location) }}
                 >
                   <ListItemIcon
                     sx={[
@@ -189,7 +194,8 @@ const customDrawer: React.FC<Props> = ({ children }) => {
                           },
                     ]}
                   >
-                    { <route.icon /> }
+                    { route.icon() }
+
                   </ListItemIcon>
                   <ListItemText 
                     sx={[
@@ -202,7 +208,7 @@ const customDrawer: React.FC<Props> = ({ children }) => {
                           },
                     ]}
                   >
-                    <Link href={route.location}>{route.title}</Link>
+                    { route.title }
                   </ListItemText>
 
                 </ListItemButton>
