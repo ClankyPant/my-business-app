@@ -20,6 +20,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import routes from '@/constants/routes';
 import { useRouter } from 'next/navigation'
+import Logo from './Logo';
 
 const drawerWidth = 240;
 
@@ -110,6 +111,7 @@ interface Props {
 }
 
 const customDrawer: React.FC<Props> = ({ children }) => {
+
   const theme = useTheme();
   const router = useRouter();
 
@@ -146,9 +148,7 @@ const customDrawer: React.FC<Props> = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Meu comercio
-          </Typography>
+          <Logo />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -215,57 +215,6 @@ const customDrawer: React.FC<Props> = ({ children }) => {
               </ListItem>
             ))
           }
-
-
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                  },
-                  open
-                    ? {
-                        justifyContent: 'initial',
-                      }
-                    : {
-                        justifyContent: 'center',
-                      },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: 'center',
-                    },
-                    open
-                      ? {
-                          mr: 3,
-                        }
-                      : {
-                          mr: 'auto',
-                        },
-                  ]}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
