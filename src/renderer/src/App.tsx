@@ -1,10 +1,10 @@
 
-import React from 'react';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import CustomDrawer from './components/CustomDrawer';
-import routes from './constants/routes';
 import { ThemeProvider } from '@mui/material';
+import routes from './constants/routes';
 import theme from './libs/theme';
+import React from 'react';
 
 const App: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const App: React.FC = () => {
           <Routes>
             { 
               routes.map((route) => (
-                <Route path={route.location} element={route.page} />    
+                <Route key={route.title} path={route.location} element={route.page} />    
               ))
             }
           </Routes>
